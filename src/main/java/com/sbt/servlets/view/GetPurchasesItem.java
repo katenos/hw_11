@@ -3,6 +3,8 @@ package com.sbt.servlets.view;
 import com.sbt.DAO.DAO;
 import com.sbt.DAO.Database;
 import com.sbt.model.Delivery;
+import com.sbt.model.Item;
+import com.sbt.model.User;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -49,6 +51,7 @@ public class GetPurchasesItem extends HttpServlet {
                 }
 
             }
+            dao.closeConnection();
             out.println(new JSONObject().put("documents", list).toString());
         } catch (Exception e) {
             System.out.println("Exception is ;" + e);

@@ -83,7 +83,7 @@ public class Database implements DAO {
                 case 'b': //Bid
                     list = (List<Bid>) session.createCriteria(Bid.class).list();
                     break;
-                case 'd': //Bid
+                case 'd': //Delivery
                     list = (List<Delivery>) session.createCriteria(Delivery.class).list();
                     break;
             }
@@ -97,8 +97,26 @@ public class Database implements DAO {
         return null;
     }
 
+    public User getUser(String username) throws DAOException{
+        try {
+            createConnection();
+            List<User> userList = session.createCriteria(User.class).list();
+            for (User user : userList) {
+                if (user.getName().equals(username)) {
+                    return user;
+                }
+            }
+            session.flush();
+            tx.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            tx.rollback();
+        }
+        return null;
+    }
+
     @SuppressWarnings("unchecked")
-    public User getUser(String username, String password) throws DAOException {
+    public User authorizationUser(String username, String password) throws DAOException {
         try {
             createConnection();
             List<User> userList = session.createCriteria(User.class).list();

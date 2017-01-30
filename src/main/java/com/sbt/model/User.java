@@ -17,8 +17,6 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Item> itemList = new ArrayList<Item>();
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Item> itemPurchList = new ArrayList<Item>();
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Bid> bidList = new ArrayList<Bid>();
 
     public String getName() {
@@ -34,11 +32,7 @@ public class User extends BaseEntity {
     }
 
     public void addItem(Item item) {
-        if (item.isSales()) {
-            this.itemPurchList.add(item);
-        } else {
-            this.itemList.add(item);
-        }
+        this.itemList.add(item);
     }
 
     public String getPassword() {

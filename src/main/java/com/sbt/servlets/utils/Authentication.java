@@ -32,7 +32,7 @@ public class Authentication extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             DAO dao = new Database();
-            User user = dao.getUser(username, password);
+            User user = dao.authorizationUser(username, password);
             if (user != null) {
                 session.removeAttribute("logout");
                 session.setAttribute("user", username);

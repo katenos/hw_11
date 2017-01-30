@@ -17,11 +17,13 @@ import java.util.List;
 
 public interface DAO {
 
-    public void persist(BaseEntity entity) throws DAOException;
+    void persist(BaseEntity entity) throws DAOException;
 
-    public void closeConnection() throws DAOException;
+    void closeConnection() throws DAOException;
 
-    public List<? extends BaseEntity> findAll(char className) throws DAOException;
+    List<? extends BaseEntity> findAll(char className) throws DAOException;
 
-    public User getUser(String username, String password) throws DAOException;
+    User getUser(String username) throws DAOException;
+
+    User authorizationUser(String username, String password) throws DAOException;
 }

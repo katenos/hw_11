@@ -44,6 +44,7 @@ public class GetAllItem extends HttpServlet {
                     list.add(result);
                 }
             }
+            dao.closeConnection();
             out.println(new JSONObject().put("documents", list).toString());
         } catch (Exception e) {
             System.out.println("Exception is ;" + e);

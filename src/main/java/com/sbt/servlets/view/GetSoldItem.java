@@ -3,6 +3,7 @@ package com.sbt.servlets.view;
 import com.sbt.DAO.DAO;
 import com.sbt.DAO.Database;
 import com.sbt.model.Bid;
+import com.sbt.model.User;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -29,21 +30,20 @@ public class GetSoldItem extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String username =  session.getAttribute("user").toString();
+        String username = session.getAttribute("user").toString();
         try (PrintWriter out = response.getWriter()) {
-            DAO dao=new Database();
-            List<Bid> allBidList= (List<Bid>) dao.findAll('b');
-            List<HashMap> resultList=new ArrayList<>();
-            for(Bid bid:allBidList){
-                if(bid.getItem().getUser().getName().equals(username)){//продавец-текущий пользователь
-                    HashMap result = new HashMap();
-                    result.put("id", bid.getItem().getId());
-                    result.put("name", bid.getItem().getName());
-                    result.put("description", bid.getItem().getDescription());
-                    result.put("user", bid.getUser().getName());
-                    resultList.add(result);
-                }
+            DAO dao = new Database();
+            User user = dao.getUser(username);
+            List<HashMap> resultList = new ArrayList<>();
+            for (Bid bid : user.getBidList()) {
+                HashMap result = new HashMap();
+                result.put("id", bid.getItem().getId());
+                result.put("name", bid.getItem().getName());
+                result.put("description", bid.getItem().getDescription());
+                result.put("user", bid.getUser().getName());
+                resultList.add(result);
             }
+            dao.closeConnection();
             out.println(new JSONObject().put("documents", resultList).toString());
         } catch (Exception e) {
             System.out.println("Exception is ;" + e);
