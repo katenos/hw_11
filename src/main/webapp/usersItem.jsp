@@ -13,6 +13,7 @@
     <script src="jquery/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="js/usersItem.js"></script>
+    <script type="text/javascript" src="js/basicFunction.js"></script>
     <title>Выставленные на продажу товары</title>
 </head>
 <body>

@@ -14,6 +14,7 @@
     <script src="jquery/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="js/allItem.js"></script>
+    <script type="text/javascript" src="js/basicFunction.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Проданные товары</title>
 </head>

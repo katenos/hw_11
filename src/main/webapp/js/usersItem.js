@@ -19,9 +19,3 @@ function getTr(element, number) {
     tr.append(getTd(element.description));
     return tr;
 }
-
-function getTd(childElement) {
-    var td = $("<td>");
-    td.append(childElement);
-    return td;
-}
