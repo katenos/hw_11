@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hw_10:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="katenos-v1.war">
+      <element id="artifact" artifact-name="hw_10:war exploded" />
+    </root>
+  </artifact>
+</component>
