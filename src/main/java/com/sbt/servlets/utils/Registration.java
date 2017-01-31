@@ -40,10 +40,7 @@ public class Registration extends HttpServlet {
             data = checkingData(username, password, password_doubling);
             if (!data.containsKey("message")) {
                 DAO dao = new Database();
-                User user = new User();
-                user.setName(username);
-                user.setPassword(password);
-                dao.persist(user);
+                dao.createUser(username, password);
                 dao.closeConnection();
                 out.println(new JSONObject().put("message", "Created").toString());
             } else {

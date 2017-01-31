@@ -6,8 +6,7 @@
 package com.sbt.DAO;
 
 
-import com.sbt.model.BaseEntity;
-import com.sbt.model.User;
+import com.sbt.model.*;
 
 import java.util.List;
 
@@ -17,8 +16,6 @@ import java.util.List;
 
 public interface DAO {
 
-    void persist(BaseEntity entity) throws DAOException;
-
     void closeConnection() throws DAOException;
 
     List<? extends BaseEntity> findAll(char className) throws DAOException;
@@ -26,4 +23,13 @@ public interface DAO {
     User getUser(String username) throws DAOException;
 
     User authorizationUser(String username, String password) throws DAOException;
+
+    User createUser(String name, String password) throws DAOException;
+
+    Delivery createDelivery(Bid bid, String fullname, String address, boolean delived) throws DAOException;
+
+    Item createItem(String name, User user, String description, int startPrice, boolean isSales) throws DAOException;
+
+    Bid createBid(User user, Item item) throws DAOException;
+
 }

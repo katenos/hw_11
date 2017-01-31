@@ -3,9 +3,4 @@
   <welcome-file-list>
     <welcome-file>userItem.jsp</welcome-file>
   </welcome-file-list>
-  <session-config>
-    <session-timeout>
-      500
-    </session-timeout>
-  </session-config>
 </web-app>

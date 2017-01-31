@@ -44,6 +44,7 @@ public class GetPurchasesItem extends HttpServlet {
                     result.put("user_pur_id", delivery.getBid().getItem().getUser().getId());
                     result.put("user_pur_name", delivery.getBid().getItem().getUser().getName());
                     result.put("price", delivery.getBid().getPrice());
+                    result.put("start_price", delivery.getBid().getItem().getStartPrice());
                     result.put("user_fio", delivery.getUserFullName());
                     result.put("user_address", delivery.getAddress());
                     result.put("status", delivery.isDeliveried());

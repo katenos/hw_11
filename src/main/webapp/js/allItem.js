@@ -17,6 +17,7 @@ function getTr(element, number) {
     td.html(number);
     tr.append(getTd(element.name));
     tr.append(getTd(element.description));
+    tr.append(getTd(element.startPrice));
     tr.append(getTd(element.user));
     return tr;
 }

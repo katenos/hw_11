@@ -15,6 +15,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="js/allItem.js"></script>
     <script type="text/javascript" src="js/basicFunction.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.18.custom.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Проданные товары</title>
 </head>
@@ -25,6 +26,7 @@
         <th style="text-align: center;">№</th>
         <th style="text-align: center;">Наименование</th>
         <th style="text-align: center;">Описание</th>
+        <th style="text-align: center;">Цена</th>
         <th style="text-align: center;">Кто продает</th>
     </tr>
     </thead>
