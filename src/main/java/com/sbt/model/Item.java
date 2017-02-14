@@ -17,7 +17,7 @@ public class Item extends BaseEntity{
     @JoinColumn(name = "user_id")
     private User user;
     @Column
-    private int startPrice;
+    private int price;
     @Column
     private boolean isSales;
 
@@ -54,11 +54,11 @@ public class Item extends BaseEntity{
         isSales = sales;
     }
 
-    public int getStartPrice() {
-        return startPrice;
+    public int getPrice() {
+        return price;
     }
 
-    public void setStartPrice(int startPrice) {
-        this.startPrice = startPrice;
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

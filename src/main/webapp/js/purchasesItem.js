@@ -18,7 +18,6 @@ function getTr(element, number) {
     tr.append(getTd(element.name));
     tr.append(getTd(element.description));
     tr.append(getTd(element.user_pur_name));
-    tr.append(getTd(element.start_price));
     tr.append(getTd(element.price));
     tr.append(getTd(element.user_fio));
     tr.append(getTd(element.user_address));

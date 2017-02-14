@@ -1,9 +1,8 @@
-package com.sbt.servlets.Add;
+package com.sbt.servlets.Logic;
 
 import com.sbt.DAO.DAO;
 import com.sbt.DAO.Database;
 import com.sbt.model.User;
-import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,11 +28,11 @@ public class AddItem extends HttpServlet {
         String username = session.getAttribute("user").toString();
         String name = request.getParameter("name").toString();
         String description = request.getParameter("description").toString();
-        int startPrice = Integer.parseInt(request.getParameter("startPrice").toString());
+        int price = Integer.parseInt(request.getParameter("price").toString());
         try (PrintWriter out = response.getWriter()) {
             DAO dao = new Database();
             User user = dao.getUser(username);
-            dao.createItem(name, user, description, startPrice, false);
+            dao.createItem(name, user, description, price, false);
             dao.closeConnection();
         } catch (Exception e) {
             System.out.println("Exception is ;" + e);

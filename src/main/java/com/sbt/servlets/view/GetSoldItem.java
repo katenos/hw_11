@@ -33,15 +33,17 @@ public class GetSoldItem extends HttpServlet {
         String username = session.getAttribute("user").toString();
         try (PrintWriter out = response.getWriter()) {
             DAO dao = new Database();
-            User user = dao.getUser(username);
+            List<Bid> bidList = (List<Bid>) dao.findAll('b');
             List<HashMap> resultList = new ArrayList<>();
-            for (Bid bid : user.getBidList()) {
-                HashMap result = new HashMap();
-                result.put("id", bid.getItem().getId());
-                result.put("name", bid.getItem().getName());
-                result.put("description", bid.getItem().getDescription());
-                result.put("user", bid.getUser().getName());
-                resultList.add(result);
+            for (Bid bid : bidList) {
+                if (bid.getItem().getUser().getName().equals(username)) {
+                    HashMap result = new HashMap();
+                    result.put("id", bid.getItem().getId());
+                    result.put("name", bid.getItem().getName());
+                    result.put("description", bid.getItem().getDescription());
+                    result.put("user", bid.getUser().getName());
+                    resultList.add(result);
+                }
             }
             dao.closeConnection();
             out.println(new JSONObject().put("documents", resultList).toString());

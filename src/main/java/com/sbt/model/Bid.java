@@ -13,8 +13,6 @@ public class Bid extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;
-    @Column
-    private double price;
     @OneToOne(mappedBy = "bid", fetch = FetchType.LAZY)
     private Delivery delivery;
 
@@ -43,11 +41,4 @@ public class Bid extends BaseEntity{
         this.delivery = delivery;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

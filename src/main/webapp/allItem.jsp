@@ -28,11 +28,18 @@
         <th style="text-align: center;">Описание</th>
         <th style="text-align: center;">Цена</th>
         <th style="text-align: center;">Кто продает</th>
+        <th style="text-align: center;">Покупка</th>
     </tr>
     </thead>
     <tbody id="tbody">
 
     </tbody>
 </table>
+<div id="dialogWindow" >
+    <span>Полное имя</span>
+    <input id="fullName">
+    <span>Адрес</span>
+    <input id="address">
+</div>
 </body>
 </html>

@@ -44,7 +44,7 @@
         </tr>
         <tr>
             <th>Стартовая цена</th>
-            <th><input id="purchaseStartPrice"></th>
+            <th><input id="purchaseStartPrice" type="number"></th>
         </tr>
     </table>
 </div>

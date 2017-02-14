@@ -52,7 +52,7 @@ public class GetUserItem extends HttpServlet {
         result.put("id", item.getId());
         result.put("name", item.getName());
         result.put("description", item.getDescription());
-        result.put("startPrice", item.getStartPrice());
+        result.put("price", item.getPrice());
         list.add(result);
         return list;
     }

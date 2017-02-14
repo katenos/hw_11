@@ -170,12 +170,12 @@ public class Database implements DAO {
         return delivery;
     }
 
-    public Item createItem(String name, User user, String description, int startPrice, boolean isSales) throws DAOException {
+    public Item createItem(String name, User user, String description, int price, boolean isSales) throws DAOException {
         Item item = new Item();
         try {
             createConnection();
             item.setName(name);
-            item.setStartPrice(startPrice);
+            item.setPrice(price);
             item.setDescription(description);
             item.setSales(isSales);
             item.setUser(user);
@@ -198,6 +198,8 @@ public class Database implements DAO {
             bid.setUser(user);
             user.addBid(bid);
             bid.setItem(item);
+            item.setSales(true);
+            session.persist(item);
             session.persist(bid);
             session.persist(user);
             session.flush();

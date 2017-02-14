@@ -1,8 +1,10 @@
-package com.sbt.servlets.view;
+package com.sbt.servlets.Logic;
 
 import com.sbt.DAO.DAO;
 import com.sbt.DAO.Database;
+import com.sbt.model.Bid;
 import com.sbt.model.Item;
+import com.sbt.model.User;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -18,10 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by kate_ on 30.01.2017.
+ * Created by kate_ on 07.02.2017.
  */
-@WebServlet(name = "GetAllItem", urlPatterns = {"/GetAllItem"})
-public class GetAllItem extends HttpServlet {
+@WebServlet(name = "PurchaseItem", urlPatterns = {"/PurchaseItem"})
+public class PurchaseItem extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -30,23 +32,22 @@ public class GetAllItem extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         String username = session.getAttribute("user").toString();
+        String fullName = session.getAttribute("fullName").toString();
+        String address = session.getAttribute("address").toString();
+        int idItem = Integer.parseInt(request.getParameter("id").toString());
         try (PrintWriter out = response.getWriter()) {
             DAO dao = new Database();
             List<Item> allItemList = (List<Item>) dao.findAll('i');
-            List<HashMap> list=new ArrayList<>();
+            List<HashMap> list = new ArrayList<>();
             for (Item item : allItemList) {
-                if (item.isSales() == false&&!item.getUser().getName().equals(username)) {
-                    HashMap result = new HashMap();
-                    result.put("id", item.getId());
-                    result.put("name", item.getName());
-                    result.put("description", item.getDescription());
-                    result.put("user", item.getUser().getName());
-                    result.put("price", item.getPrice());
-                    list.add(result);
+                if (item.getId().equals(idItem)) {
+                    User user = dao.getUser(username);
+                    Bid bid=dao.createBid(user, item);
+                    dao.createDelivery(bid,fullName,address,false);
                 }
             }
             dao.closeConnection();
-            out.println(new JSONObject().put("documents", list).toString());
+            out.println(new JSONObject().put("success", true).toString());
         } catch (Exception e) {
             System.out.println("Exception is ;" + e);
         }

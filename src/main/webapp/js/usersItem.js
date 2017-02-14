@@ -9,12 +9,12 @@ $(document).ready(function () {
             Добавить: function () {
                 var name = $("#purchaseName").val();
                 var description = $("#purchaseDescription").val();
-                var startPrice = parseInt($("#purchaseStartPrice").val());
-                if (name !== undefined && startPrice !== NaN) {
+                var price = parseInt($("#purchaseStartPrice").val());
+                if (name !== undefined && price !== NaN) {
                     $.getJSON("AddItem", {
                             name: $("#purchaseName").val(),
                             description: $("#purchaseDescription").val(),
-                            startPrice: $("#purchaseStartPrice").val()
+                            price: $("#purchaseStartPrice").val()
                         }, function () {
                             getUserItem();
                             $('#dialogWindow').dialog('close');
@@ -49,6 +49,6 @@ function getTr(element, number) {
     td.html(number);
     tr.append(getTd(element.name));
     tr.append(getTd(element.description));
-    tr.append(getTd(element.startPrice));
+    tr.append(getTd(element.price));
     return tr;
 }
