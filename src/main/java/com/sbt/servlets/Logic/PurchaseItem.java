@@ -32,8 +32,8 @@ public class PurchaseItem extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         String username = session.getAttribute("user").toString();
-        String fullName = session.getAttribute("fullName").toString();
-        String address = session.getAttribute("address").toString();
+        String fullName = request.getParameter("fullName").toString();
+        String address = request.getParameter("address").toString();
         int idItem = Integer.parseInt(request.getParameter("id").toString());
         try (PrintWriter out = response.getWriter()) {
             DAO dao = new Database();
